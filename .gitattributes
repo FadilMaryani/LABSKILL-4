@@ -1,2 +1,135 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+void displayShop();
+void displayMenu();
+double calculationTotal(int choice);
+void fullPayment(double total);
+
+int main()
+{
+	int choice;
+    double total;
+
+//mukaddimah
+	displayShop();
+
+    do
+    {
+    	//menu
+		displayMenu();
+        cin >> choice;
+
+		if (choice >=1 && choice <=3){
+			total += calculationTotal(choice);
+
+		}else if (choice ==4){
+			fullPayment(total);
+
+		}else{
+			cout << " Invalid choice! " << endl;
+        }
+
+        cout << endl;
+
+    } while (choice != 4);
+
+    return 0;
+}
+
+//untuk tunjuk mukaddimah
+void displayShop(){
+	cout << "      ********************" << endl;
+    cout << "      Welcome to Mike Shop" << endl;
+    cout << "      ********************" << endl;
+
+}
+
+//tunjuk menu
+void displayMenu(){
+	cout << " \n List of product and price per unit " << endl;
+    cout << "      1. Soap      RM 3.50 " << endl;
+    cout << "      2. Shampoo   RM 6.80 " << endl;
+    cout << "      3. Detergent RM 11.20 " << endl;
+    cout << "      4. Payment " << endl;
+
+    cout << " Enter your choice (1/2/3/4): ";
+
+}
+
+//nak kira total ngn item
+double calculationTotal(int choice){
+	int quantity;
+	double total = 0.00;
+	string item;
+
+	cout << " Enter quantity: ";
+    cin >> quantity;
+
+     switch (choice)
+    {
+            case 1:
+                item = "Soap";
+				total = 3.50;
+
+                break;
+
+            case 2:
+                item = "Shampoo";
+                total = 6.80;
+
+                break;
+
+            case 3:
+                item = "Detergent";
+                total = 11.20;
+
+                break;
+    }
+
+    double subtotal = quantity * total;
+
+	cout << fixed << setprecision(2);
+    cout<< " Total price for " << quantity <<" "<< item << " is RM"<< subtotal;
+	cout<< endl;
+
+	return subtotal;
+}
+
+//nak full payment dgn loop kalau tak cukup duit
+void fullPayment(double total){
+	double payment;
+
+	cout << fixed << setprecision(2);
+    cout << " Total payment is RM " << total;
+	cout << endl;
+
+    cout << " Your payment: RM ";
+    cin >> payment;
+
+	if (payment < total){
+
+        cout << " Not enough make new payment " << endl;
+        cout << " Your payment: RM ";
+        cin >> payment;
+                }
+
+                if (payment >= total)
+                {
+                    cout << " Thank you, your balance is RM "
+                         << payment - total << endl;
+                }
+                else
+                {
+                    cout << " Payment is still not enough." << endl;
+                }
+
+
+
+
+
+
+
+
+}
